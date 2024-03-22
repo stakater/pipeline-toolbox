@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8-minimal:8.1-407
+FROM registry.access.redhat.com/ubi8-minimal:8.9-1137
 
 RUN mkdir -p /projects
 
