@@ -16,6 +16,7 @@ ENV GLIBC_VERSION=2.30-r0 \
     ROX_VERSION=4.5.0 \
     ANSIBLE_VERSION=2.12.1 \
     SONAR_CLI_VERSION=6.1.0.4477 \
+    CROSSPLANE_CLI_VERSION=v1.20.0 \
     HOME="/opt/root"\
     JAVA_TOOL_OPTIONS="-Djava.net.preferIPv4Stack=true"
     
@@ -94,6 +95,10 @@ RUN for f in "/etc/passwd" "/projects"; do \
       echo "Changing permissions on ${f}" && chgrp -R 0 ${f} && \
       chmod -R g+rwX ${f}; \
     done
+
+# Install Crossplane CLI
+RUN curl -sL -o /usr/local/bin/crossplane "https://releases.crossplane.io/stable/${CROSSPLANE_CLI_VERSION}/bin/linux_amd64/crossplane" && \
+    chmod +x /usr/local/bin/crossplane
 
 # install sonarqube scanner
 RUN wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${SONAR_CLI_VERSION}.zip && \
